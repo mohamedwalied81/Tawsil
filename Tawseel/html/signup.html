@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tawseel  - Staff Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="website icon" type="icon" href="../images/Heading.png">
+    <style>
+        .password-strength {
+            margin-top: 5px;
+            height: 5px;
+            background: #eee;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background 0.3s;
+        }
+
+        .terms-check {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .terms-check input {
+            width: auto;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tawseel-header">
+            <i class="fas fa-bus"></i>
+            <h1>Tawseel</h1>
+            <p class="tagline">Student Bus</p>
+        </div>
+        <div class="auth-form">
+            <h2><i class="fas fa-user-plus"></i>  Registration</h2>
+            <form id="signup">
+                <div class="form-group">
+                    <label for="signup-name"><i class="fas fa-user"></i> Full Name:</label>
+                    <input type="text" id="signup-name" required placeholder="mohammed walied">
+                    <small>Your full name as it should appear in the system</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-email"><i class="fas fa-envelope"></i> Email Address:</label>
+                    <input type="email" id="signup-email" required placeholder="mohammed@example.com">
+                    <small>This will be your login username</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-phone"><i class="fas fa-phone"></i> Phone Number:</label>
+                    <input type="tel" id="signup-phone" placeholder="+20 ">
+                    <small>Optional for account recovery</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-password"><i class="fas fa-lock"></i> Password:</label>
+                    <input type="password" id="signup-password" required placeholder="At least 8 characters"
+                        minlength="8">
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="password-strength-bar"></div>
+                    </div>
+                    <small>Must include uppercase and number</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="signup-confirm"><i class="fas fa-lock"></i> Confirm Password:</label>
+                    <input type="password" id="signup-confirm" required placeholder="Re-enter your password"
+                        minlength="8">
+                </div>
+
+                <div class="terms-check">
+                    <input type="checkbox" id="terms-agree" required>
+                    <label for="terms-agree">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy
+                            Policy</a></label>
+                </div>
+
+                <button type="submit" id="signup-button">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+
+                <p class="login-link">Already have an account? <a href="../html/signin.html"><i class="fas fa-sign-in-alt"></i>
+                        Login here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+</body>
+
+</html>

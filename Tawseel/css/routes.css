@@ -1,0 +1,58 @@
+/* Map Container Styles */
+.map-box {
+  height: 500px;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  position: relative;
+  z-index: 1; /* Ensure it's below the header */
+  overflow: hidden; /* Prevent map from spilling outside */
+}
+/* Map Error Fallback */
+.map-error {
+  padding: 20px;
+  background: #f8d7da;
+  color: #721c24;
+  border-radius: 8px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Keep your existing route-details styles */
+.route-details {
+  margin: 60px auto;
+  max-width: 900px;
+}
+
+.routes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.route-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  width: 400px;
+  transition: transform 0.3s ease;
+}
+
+.route-card:hover {
+  transform: translateY(-5px);
+}
+
+.route-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.route-card li {
+  margin-bottom: 10px;
+}

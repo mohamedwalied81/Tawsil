@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tawseel - Contact Us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  
+  <!-- Loader CSS -->
+  <link rel="stylesheet" href="../css/loader.css">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/enhanced-style.css">
+
+  <link rel="website icon" href="../images/Heading.png">
+
+  <style>
+    /* Additional contact page specific styles */
+    .contact-section {
+      padding: 60px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .contact-form {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus, 
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(0, 179, 113, 0.2);
+    }
+
+    .contact-info {
+      padding: 30px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 25px;
+    }
+
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .info-content h3 {
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-3px);
+    }
+
+    /* Notification styling */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: white;
+      color: #333;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .notification.success {
+      border-left: 4px solid var(--primary);
+    }
+
+    .notification.error {
+      border-left: 4px solid #d32f2f;
+    }
+
+    /* Media queries */
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Loader -->
+  <div id="loader-wrapper">
+    <div class="loader-container">
+      <div class="road-container">
+        <div class="road">
+          <div class="road-lines"></div>
+          <div class="bus">
+            <div class="bus-body">
+              <div class="bus-front"></div>
+              <div class="bus-windows"></div>
+              <div class="bus-wheels">
+                <div class="wheel front-wheel"></div>
+                <div class="wheel back-wheel"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="loading-text">Tawseel is on its way...</div>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <img src="../images/Heading.png" alt="Tawseel Logo" class="logo">
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="routes.html">Routes</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-right">
+        <div class="auth-buttons" id="authButtons">
+          <a href="../html/signin.html" class="btn">Login</a>
+          <a href="../html/signup.html" class="btn">Sign Up</a>
+        </div>
+        <div class="profile-menu" id="profileMenu" style="display: none;">
+          <div class="profile-icon" id="profileIcon">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="dropdown-content">
+            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact" data-aos="fade-up">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contact <span class="text-primary">Us</span></h2>
+        </div>
+        
+        <div class="contact-grid">
+          <div class="contact-form" data-aos="fade-right">
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              
+              <button type="submit" class="btn">Send Message</button>
+            </form>
+          </div>
+          
+          <div class="contact-info" data-aos="fade-left">
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="info-content">
+                <h3>Address</h3>
+                <p>Baghdad, st، Moharam Bek, Alexandria Governorate 5413213</p>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="info-content">
+                <h3>Phone</h3>
+                <p>+20 123 456 7890</p>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="info-content">
+                <h3>Email</h3>
+                <p>info@tawseel.com</p>
+              </div>
+            </div>
+            
+            <div class="social-links">
+              <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Taw<span class="text-primary">seel</span></h3>
+        <p>Your ride, your schedule - every time.</p>
+        <p>Providing reliable transportation services since 2020.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="routes.html">Routes</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-map-marker-alt"></i>Baghdad, st، Moharam Bek, Alexandria Governorate 5413213</p>
+        <p><i class="fas fa-phone"></i> +20 123 456 7890</p>
+        <p><i class="fas fa-envelope"></i> info@tawseel.com</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2025 Tawseel. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Notification Element -->
+  <div class="notification" id="notification"></div>
+
+  <!-- Loader JS -->
+  <script src="../js/loader.js"></script>
+  <!-- Main JS -->
+  <script src="../js/main.js"></script>
+  
+  <!-- Contact Form JS -->
+  <script>
+    // Simple form submission handler
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS animations
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true
+        });
+      }
+
+      // Contact form handling
+      const contactForm = document.getElementById('contactForm');
+      const notification = document.getElementById('notification');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get form data
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const subject = document.getElementById('subject').value;
+          const message = document.getElementById('message').value;
+          
+          // Here you would typically send the data to your server
+          // For now, we'll just show a success message
+          
+          // Show notification
+          showNotification('Your message has been sent successfully! We will get back to you soon.', 'success');
+          
+          // Reset form
+          contactForm.reset();
+        });
+      }
+
+      // Notification function
+      function showNotification(message, type = 'success') {
+        notification.textContent = message;
+        notification.className = `notification ${type} show`;
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+          notification.className = 'notification';
+        }, 5000);
+      }
+    });
+  </script>
+  
+  <!-- AOS Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</body>
+
+</html>

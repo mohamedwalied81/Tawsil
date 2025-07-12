@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tawseel - Routes</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Loader CSS -->
+  <link rel="stylesheet" href="../css/loader.css">
+  <link rel="stylesheet" href="../css/routes.css">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <link rel="website icon" href="../images/Heading.png">
+</head>
+
+<body>
+  <!-- Loader -->
+  <div id="loader-wrapper">
+    <div class="loader-container">
+      <div class="road-container">
+        <div class="road">
+          <div class="road-lines"></div>
+          <div class="bus">
+            <div class="bus-body">
+              <div class="bus-front"></div>
+              <div class="bus-windows"></div>
+              <div class="bus-wheels">
+                <div class="wheel front-wheel"></div>
+                <div class="wheel back-wheel"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="loading-text">Tawseel is on its way...</div>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <img src="../images/Heading.png" alt="Tawseel Logo" class="logo" />
+      </div>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="routes.html" class="active">Routes</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-right">
+        <div class="auth-buttons" id="authButtons">
+          <a href="../html/signin.html" class="btn">Login</a>
+          <a href="../html/signup.html" class="btn">Sign Up</a>
+        </div>
+        <div class="profile-menu" id="profileMenu" style="display: none;">
+          <div class="profile-icon" id="profileIcon">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="dropdown-content">
+            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="welcome">
+      <h1>Available Routes 🛣️</h1>
+      <p>Explore all scheduled pickup and drop-off locations across Alexandria</p>
+    </section>
+
+    <section class="map-preview">
+      <h2>Interactive Pickup Points Map</h2>
+      <div id="map" class="map-box"></div>
+    </section>
+
+    <section class="route-details">
+      <h2>Main Routes</h2>
+      <div class="routes-list">
+        <div class="route-card">
+          <h3>Route A - Downtown Route</h3>
+          <ul>
+            <li><strong>Pickups:</strong> Sidi Gaber, San Stefano</li>
+            <li><strong>Departure Time:</strong> Every 30 min from 7:00 AM to 3:30 PM</li>
+            <li><strong>Drop-off:</strong> AU Main Gate</li>
+          </ul>
+        </div>
+        <div class="route-card">
+          <h3>Route B - Campus Loop</h3>
+          <ul>
+            <li><strong>Pickups:</strong> Faculty of Sport Education</li>
+            <li><strong>Departure Time:</strong> Every hour from 8:00 AM to 3:00 PM</li>
+            <li><strong>Drop-off:</strong> AU Central Plaza</li>
+          </ul>
+        </div>
+        <div class="route-card">
+          <h3>Route C - Medical Route</h3>
+          <ul>
+            <li><strong>Pickups:</strong> Louran, Miami</li>
+            <li><strong>Departure Time:</strong> Every 45 min from 7:45 AM to 4:45 PM</li>
+            <li><strong>Drop-off:</strong> Faculty of Medicine</li>
+          </ul>
+        </div>
+        <div class="route-card">
+          <h3>Route D - Science Route</h3>
+          <ul>
+            <li><strong>Pickups:</strong> Smouha, Miami</li>
+            <li><strong>Departure Time:</strong> Every hour from 8:00 AM to 4:00 PM</li>
+            <li><strong>Drop-off:</strong> Faculty of Science</li>
+          </ul>
+        </div>
+        <div class="route-card">
+          <h3>Route E - Business Route</h3>
+          <ul>
+            <li><strong>Pickups:</strong> Sporting, Louran</li>
+            <li><strong>Departure Time:</strong> Every hour from 7:30 AM to 4:30 PM</li>
+            <li><strong>Drop-off:</strong> Faculty of Business</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Start Booking Today</h2>
+      <p>Secure your seat on your preferred route in just a few clicks.</p>
+      <a href="schedule.html" class="btn">Book Your Ride</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Tawseel. All rights reserved.</p>
+    <p>
+      Questions? Email us at
+      <a href="mailto:support@tawseel.com">support@tawseel.com</a>
+    </p>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Loader JS -->
+  <script src="../js/loader.js"></script>
+  <!-- Auth & Navigation JS -->
+  <script src="../js/main.js"></script>
+  
+  <!-- Map Script for Routes Page -->
+  <script src="../js/routes.js"></script>
+</body>
+</html>

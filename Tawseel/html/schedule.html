@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tawseel - Schedule</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Leaflet CSS (for the small map preview) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Loader CSS -->
+  <link rel="stylesheet" href="../css/loader.css">
+  <!-- Main CSS - Add this line first to establish base styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- Schedule-specific CSS -->
+  <link rel="stylesheet" href="../css/schedule.css">
+
+  <link rel="website icon" href="../images/Heading.png">
+</head>
+
+<body>
+  <!-- Loader (same as home page) -->
+  <div id="loader-wrapper">
+    <div class="loader-container">
+      <div class="road-container">
+        <div class="road">
+          <div class="road-lines"></div>
+          <div class="bus">
+            <div class="bus-body">
+              <div class="bus-front"></div>
+              <div class="bus-windows"></div>
+              <div class="bus-wheels">
+                <div class="wheel front-wheel"></div>
+                <div class="wheel back-wheel"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="loading-text">Loading your schedule...</div>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <img src="../images/Heading.png" alt="Tawseel Logo" class="logo">
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="schedule.html" class="active">Schedule</a></li>
+          <li><a href="routes.html">Routes</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <div class="auth-buttons" id="authButtons">
+          <a href="../html/signin.html" class="btn">Login</a>
+          <a href="../html/signup.html" class="btn">Sign Up</a>
+        </div>
+        <div class="profile-menu" id="profileMenu" style="display: none;">
+          <div class="profile-icon" id="profileIcon">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="dropdown-content">
+            <a href="#"><i class="fas fa-user"></i> Profile</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="schedule-page">
+    <section class="schedule-hero">
+      <h1><i class="fas fa-calendar-alt"></i> Bus Schedule</h1>
+      <p>Plan your trips with our real-time updated timetable</p>
+      <div class="day-selector">
+        <button class="day-btn active" data-day="all">All Days</button>
+        <button class="day-btn" data-day="sunday">Sunday</button>
+        <button class="day-btn" data-day="monday">Monday</button>
+        <button class="day-btn" data-day="tuesday">Tuesday</button>
+        <button class="day-btn" data-day="wednesday">Wednesday</button>
+        <button class="day-btn" data-day="thursday">Thursday</button>
+      </div>
+    </section>
+
+    <section class="schedule-container">
+      <div class="schedule-actions">
+        <div class="route-selector">
+          <div class="selector-container">
+            <div class="from-section">
+              <i class="fas fa-map-marker-alt"></i>
+              <select id="from-location" class="route-select">
+                <option value="">From...</option>
+                <option value="sidi-gaber">Sidi Gaber</option>
+                <option value="sporting">Sporting</option>
+                <option value="san-stefano">San Stefano</option>
+                <option value="smouha">Smouha</option>
+                <option value="louran">Louran</option>
+                <option value="miami">Miami</option>
+              </select>
+            </div>
+            <div class="direction-icon">
+              <i class="fas fa-exchange-alt"></i>
+            </div>
+            <div class="to-section">
+              <i class="fas fa-map-pin"></i>
+              <select id="to-location" class="route-select">
+                <option value="">To...</option>
+                <option value="main-campus">Main Campus</option>
+                <option value="engineering-campus">Engineering Campus</option>
+                <option value="medical-campus">Medical Campus</option>
+                <option value="faculty-of-medicine">Faculty of Medicine</option>
+                <option value="faculty-of-business">Faculty of Business</option>
+                <option value="faculty-of-science">Faculty of Science</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-cards">
+        <!-- Main Campus Route -->
+        <div class="schedule-card" data-day="monday,wednesday,friday">
+          <div class="card-header">
+            <h3>Main Campus Route</h3>
+            <span class="badge frequent">Frequent</span>
+          </div>
+          <div class="card-body">
+            <div class="timings">
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-right"></i> Outbound</h4>
+                <ul>
+                  <li>7:30 AM</li>
+                  <li>9:00 AM</li>
+                  <li>11:30 AM</li>
+                  <li>2:00 PM</li>
+                </ul>
+              </div>
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-left"></i> Return</h4>
+                <ul>
+                  <li>1:00 PM</li>
+                  <li>3:30 PM</li>
+                  <li>5:00 PM</li>
+                  <li>7:30 PM</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route-preview">
+              <div id="map-preview-1" class="mini-map"></div>
+              <div class="stops">
+                <span>Sidi Gaber → Sporting → Main Campus</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="duration"><i class="far fa-clock"></i> 35 min</span>
+            <button class="btn-book">
+              <i class="fas fa-ticket-alt"></i> Book Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Engineering Campus Route -->
+        <div class="schedule-card" data-day="tuesday,thursday,saturday">
+          <div class="card-header">
+            <h3>Engineering Campus Route</h3>
+            <span class="badge limited">Limited</span>
+          </div>
+          <div class="card-body">
+            <div class="timings">
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-right"></i> Outbound</h4>
+                <ul>
+                  <li>8:00 AM</li>
+                  <li>12:00 PM</li>
+                  <li>4:00 PM</li>
+                </ul>
+              </div>
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-left"></i> Return</h4>
+                <ul>
+                  <li>11:00 AM</li>
+                  <li>3:00 PM</li>
+                  <li>7:00 PM</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route-preview">
+              <div id="map-preview-2" class="mini-map"></div>
+              <div class="stops">
+                <span>San Stefano → Smouha → Engineering Campus</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="duration"><i class="far fa-clock"></i> 45 min</span>
+            <button class="btn-book">
+              <i class="fas fa-ticket-alt"></i> Book Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Medical Campus Route -->
+        <div class="schedule-card" data-day="monday,wednesday,friday,sunday">
+          <div class="card-header">
+            <h3>Medical Campus Route</h3>
+            <span class="badge express">Express</span>
+          </div>
+          <div class="card-body">
+            <div class="timings">
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-right"></i> Outbound</h4>
+                <ul>
+                  <li>7:45 AM</li>
+                  <li>10:15 AM</li>
+                  <li>1:45 PM</li>
+                </ul>
+              </div>
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-left"></i> Return</h4>
+                <ul>
+                  <li>12:15 PM</li>
+                  <li>4:45 PM</li>
+                  <li>8:15 PM</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route-preview">
+              <div id="map-preview-3" class="mini-map"></div>
+              <div class="stops">
+                <span>Louran → Miami → Medical Campus</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="duration"><i class="far fa-clock"></i> 30 min</span>
+            <button class="btn-book">
+              <i class="fas fa-ticket-alt"></i> Book Now
+            </button>
+          </div>
+        </div>
+        <!-- Faculty of Medicine Route -->
+        <div class="schedule-card" data-day="monday,wednesday,friday">
+          <div class="card-header">
+            <h3>Faculty of Medicine Route</h3>
+            <span class="badge express">Express</span>
+          </div>
+          <div class="card-body">
+            <div class="timings">
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-right"></i> Outbound</h4>
+                <ul>
+                  <li>7:45 AM</li>
+                  <li>10:15 AM</li>
+                  <li>1:45 PM</li>
+                </ul>
+              </div>
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-left"></i> Return</h4>
+                <ul>
+                  <li>12:15 PM</li>
+                  <li>4:45 PM</li>
+                  <li>8:15 PM</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route-preview">
+              <div id="map-preview-4" class="mini-map"></div>
+              <div class="stops">
+                <span>Sidi Gaber → San Stefano → Faculty of Medicine</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="duration"><i class="far fa-clock"></i> 35 min</span>
+            <button class="btn-book">
+              <i class="fas fa-ticket-alt"></i> Book Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Faculty of Science Route -->
+        <div class="schedule-card" data-day="tuesday,thursday">
+          <div class="card-header">
+            <h3>Faculty of Science Route</h3>
+            <span class="badge frequent">Frequent</span>
+          </div>
+          <div class="card-body">
+            <div class="timings">
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-right"></i> Outbound</h4>
+                <ul>
+                  <li>8:00 AM</li>
+                  <li>11:00 AM</li>
+                  <li>2:00 PM</li>
+                </ul>
+              </div>
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-left"></i> Return</h4>
+                <ul>
+                  <li>12:00 PM</li>
+                  <li>3:00 PM</li>
+                  <li>6:00 PM</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route-preview">
+              <div id="map-preview-5" class="mini-map"></div>
+              <div class="stops">
+                <span>Smouha → Miami → Faculty of Science</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="duration"><i class="far fa-clock"></i> 40 min</span>
+            <button class="btn-book">
+              <i class="fas fa-ticket-alt"></i> Book Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Faculty of Business Route -->
+        <div class="schedule-card" data-day="monday,wednesday,sunday">
+          <div class="card-header">
+            <h3>Faculty of Business Route</h3>
+            <span class="badge limited">Limited</span>
+          </div>
+          <div class="card-body">
+            <div class="timings">
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-right"></i> Outbound</h4>
+                <ul>
+                  <li>7:30 AM</li>
+                  <li>10:30 AM</li>
+                  <li>1:30 PM</li>
+                </ul>
+              </div>
+              <div class="time-group">
+                <h4><i class="fas fa-arrow-left"></i> Return</h4>
+                <ul>
+                  <li>12:30 PM</li>
+                  <li>4:30 PM</li>
+                  <li>7:30 PM</li>
+                </ul>
+              </div>
+            </div>
+            <div class="route-preview">
+              <div id="map-preview-6" class="mini-map"></div>
+              <div class="stops">
+                <span>Sporting → Louran → Faculty of Business</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="duration"><i class="far fa-clock"></i> 45 min</span>
+            <button class="btn-book">
+              <i class="fas fa-ticket-alt"></i> Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="schedule-notice">
+      <div class="notice-card">
+        <i class="fas fa-exclamation-circle"></i>
+        <div>
+          <h3>Schedule Notice</h3>
+          <p>Friday and Saturday schedules may vary during exam periods. Please check our announcements for updates.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Tawseel. All rights reserved.</p>
+    <p>
+      Questions? Email us at
+      <a href="mailto:support@tawseel.com">support@tawseel.com</a>
+    </p>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Loader JS -->
+  <script src="../js/loader.js"></script>
+  <!-- Main JS -->
+  <script src="../js/main.js"></script>
+  <!-- Schedule JS -->
+  <script src="../js/schedule.js"></script>
+</body>
+
+</html>
